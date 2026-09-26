@@ -4,7 +4,6 @@ import net.lawliet.stackable_potion.config.task.StackSizeSyncTask;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.network.event.RegisterConfigurationTasksEvent;
 
@@ -36,7 +35,7 @@ public class CommonConfig
 
     public static int potionStackNumber, splashPotionStackNumber, lingeringPotionStackNumber;
 
-    private static void loadConfig() {
+    public static void loadConfig() {
         potionStackNumber = POTION_STACK_SIZE.get();
         splashPotionStackNumber = SPLASH_POTION_STACK_SIZE.get();
         lingeringPotionStackNumber = LINGERING_POTION_STACK_SIZE.get();
@@ -63,9 +62,6 @@ public class CommonConfig
             event.register(new StackSizeSyncTask(event.getListener()));
     }
 
-    @SubscribeEvent
-    static void onLoggedOut(ClientPlayerNetworkEvent.LoggingOut event) {
-        loadConfig();
-    }
+
 
 }
