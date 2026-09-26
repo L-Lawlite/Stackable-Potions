@@ -23,9 +23,10 @@ public record StackSizeSyncTask(ServerConfigurationPacketListener listener) impl
      */
     @Override
     public void run(Consumer<CustomPacketPayload> sender) {
-        sender.accept(new StackSizePacket("potionStackSize", CommonConfig.POTION_STACK_SIZE.get()));
-        sender.accept(new StackSizePacket("splashPotionStackSize", CommonConfig.SPLASH_POTION_STACK_SIZE.get()));
-        sender.accept(new StackSizePacket("lingeringPotionStackSize", CommonConfig.LINGERING_POTION_STACK_SIZE.get()));
+        sender.accept(new StackSizePacket(
+                CommonConfig.POTION_STACK_SIZE.get(),
+                CommonConfig.SPLASH_POTION_STACK_SIZE.get(),
+                CommonConfig.LINGERING_POTION_STACK_SIZE.get()));
         this.listener().finishCurrentTask(this.type());
     }
 

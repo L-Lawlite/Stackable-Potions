@@ -7,12 +7,8 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 public class ConfigSyncPacketHandler {
 
     public static void handleStackSizePacket(StackSizePacket packet, IPayloadContext context) {
-        String name = packet.name();
-        int stackSize = packet.stackSize();
-        switch(name) {
-            case "potionStackSize" -> CommonConfig.potionStackNumber = stackSize;
-            case "splashPotionStackSize" -> CommonConfig.splashPotionStackNumber = stackSize;
-            case "lingeringPotionStackSize" -> CommonConfig.lingeringPotionStackNumber = stackSize;
-        }
+        CommonConfig.potionStackNumber = packet.potionStackSize();
+        CommonConfig.splashPotionStackNumber = packet.splashPotionStackSize();
+        CommonConfig.lingeringPotionStackNumber = packet.lingeringPotionStackSize();
     }
 }
